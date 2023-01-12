@@ -1,0 +1,4 @@
+Problem Link: https://codeforces.com/contest/1775/problem/C
+Solution Link: https://codeforces.com/contest/1775/submission/189041976
+Helpful sources: https://www.youtube.com/watch?v=-qrpJykY2gE&t=576s
+                 https://www.youtube.com/watch?v=6aHmj9ihjMY&t=581s
