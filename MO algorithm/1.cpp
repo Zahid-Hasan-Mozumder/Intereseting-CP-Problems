@@ -65,18 +65,15 @@ int main(){
 
     int t; cin>>t;
     while(t--){
-        int n, q; 
-        cin>>n>>q;
+        int n, q; cin>>n>>q;
         vi a(n);
         for(int i=0; i<n; i++) cin>>a[i];
         int len = ceil(sqrt(n));
-        vi b(len, 0);
-        vector<int> mx(n, 0);
+        vi b(len, 0), mx(n, 0);
         while(q--){
             int qt; cin>>qt;
             if(qt == 1){
-                int l, r;
-                cin>>l>>r;
+                int l, r; cin>>l>>r; 
                 l--; r--;
                 for(int i=l; i<=r;){
                     if(i%len==0 && i+len-1<=r){
