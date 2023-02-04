@@ -109,9 +109,7 @@ int main(){
                     }
                     cout<< a[x] << '\n';
                 }
-                else{
-                    cout<< a[x] << '\n';
-                }
+                else cout<< a[x] << '\n';
             }
         }
     }
