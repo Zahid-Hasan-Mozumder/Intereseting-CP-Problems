@@ -79,12 +79,13 @@ int main(){
 
     zahid();
     
+    int cs = 1;
     int t; cin>>t;
     while(t--){
         for(int i=0; i<N; i++) a[i] = 0;
         for(int i=0; i<4*N; i++) tree[i] = 0;
         for(int i=0; i<4*N; i++) lazy[i] = 0;
-        
+        cout<< "Case " << cs << ": " << '\n';
         int n, q; cin>>n>>q;
         build(0, 0, n-1);
         while(q--){
@@ -102,5 +103,6 @@ int main(){
                 cout<< sum << '\n';
             }
         }
+        cs++;
     }
 }
