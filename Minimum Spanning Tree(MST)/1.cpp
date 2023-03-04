@@ -64,7 +64,15 @@ ll maxST(vvpil &al){
     return sum;
 }
 
+void zahid(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+}
 int main(){
+    
+    zahid();
+    
     int cs = 1;
     int t; cin>>t;
     while(t--){
