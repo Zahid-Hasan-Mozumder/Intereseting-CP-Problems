@@ -1,16 +1,14 @@
 // Problem link: https://atcoder.jp/contests/dp/tasks/dp_d
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #include <bits/stdc++.h>
-
 using namespace std;
 
 #define ll long long int
 #define vll vector<ll>
-#define vvll vector<vector<ll>>
 
 ll n, ks;
-vll w(1e5+5), c(1e5+5);
-vvll dp(105, vll(1e5+5, 0));
+vll w(105), val(105);
+vll dp(1e5+5, -1e18);
 
 void zahid(){
     ios_base::sync_with_stdio(false);
@@ -24,15 +22,17 @@ int main(){
 
     cin >> n >> ks;
     for(int i = 1; i <= n; i++){
-        cin >> w[i] >> c[i];
+        cin >> w[i] >> val[i];
     }
+    dp[0] = 0;
     for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= ks; j++){
-            if(j < w[i]) 
-                dp[i][j] = dp[i-1][j];
-            else 
-                dp[i][j] = max(dp[i-1][j], dp[i-1][j - w[i]] + c[i]);
+        for(int j = ks; j >= w[i]; j--){
+            dp[j] = max(dp[j], dp[j - w[i]] + val[i]);
         }
     }
-    cout<< dp[n][ks] << '\n';
+    ll ans = INT_MIN;
+    for(int i = ks; i >= 0; i--){
+        ans = max(ans, dp[i]);
+    }
+    cout << ans << '\n';
 }
