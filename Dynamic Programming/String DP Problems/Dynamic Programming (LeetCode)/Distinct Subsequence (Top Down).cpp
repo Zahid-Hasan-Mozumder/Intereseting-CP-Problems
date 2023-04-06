@@ -1,4 +1,5 @@
 // Problem link: https://leetcode.com/problems/distinct-subsequences/
+// Helpful video: https://www.youtube.com/watch?v=nVG7eTiD2bY&t=1287s
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #include <bits/stdc++.h>
 using namespace std;
