@@ -19,6 +19,19 @@ int depression(int i, int j){
     return dp[i][j] = res;
 }
 
+string generate(int i, int j){
+    string ans = "";
+    while(i > 0 && j > 0){
+        if(dp[i][j] == dp[i - 1][j]) i--;
+        else if(dp[i][j] == dp[i][j - 1]) j--;
+        else{
+            ans = s[i] + ans;
+            i--; j--;
+        }
+    }
+    return ans;
+}
+    
 void zahid(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -34,16 +47,7 @@ int main(){
     t = " " + t;
     int n = s.size();
     int m = t.size();
-    dp[n - 1][m - 1] = depression(n - 1, m - 1);
-    string ans = "";
-    int i = n - 1, j = m - 1;
-    while(i > 0 && j > 0){
-        if(dp[i][j] == dp[i - 1][j]) i--;
-        else if(dp[i][j] == dp[i][j - 1]) j--;
-        else{
-            ans = s[i] + ans;
-            i--; j--;
-        }
-    }
-    cout << ans << '\n';
+    int lcs_length = depression(n - 1, m - 1);
+    string lcs_string = generate(n - 1, m - 1);
+    cout << lcs_string << '\n';
 }
