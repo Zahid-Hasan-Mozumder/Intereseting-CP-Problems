@@ -1,4 +1,5 @@
 // Problem link: https://leetcode.com/problems/shortest-common-supersequence/
+// Helpful video: https://www.youtube.com/watch?v=xElxAuBcvsU
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #include <bits/stdc++.h>
 using namespace std;
