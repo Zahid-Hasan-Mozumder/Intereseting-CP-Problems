@@ -1,4 +1,5 @@
 // Problem link: https://codeforces.com/problemset/problem/1616/C
+// Video editorial: https://www.youtube.com/watch?v=xxjONw7lP1Q
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #include <bits/stdc++.h>
 #include <climits>
@@ -50,6 +51,7 @@ const int N = 2e6 + 2;
 const int sz = 1e6 + 2;
 const double pi = acos(-1.0);
 const double PI = 3.1415926535897;
+const double eps = 1e-6;
 
 void zahid(){
     #ifndef ONLINE_JUDGE
@@ -69,35 +71,28 @@ int main(){
     int t; cin >> t;
     while(t--){
         int n; cin >> n;
-        vi a(n);
+        vector<int> a(n);
         for(int i = 0; i < n; i++) cin >> a[i];
         if(n == 1 || n == 2) cout << 0 << '\n';
         else{
             int mn = n - 1;
             for(int i = 0; i < n; i++){
                 for(int j = i + 1; j < n; j++){
-                    double diff = ((a[j] - a[i]) * 1.0) / (j - i);
-                    int ok = 0;
-                    if(a[i] > a[j]){
-                        for(int k = i - 1; k >= 0; k--){
-                            if(a[i] + (diff * (i - k)) == a[k]) ok++;
-                        }
-                        for(int k = j + 1; k < n; k++){
-                            if(a[j] - (diff * (k - j)) == a[k]) ok++;
-                        }
-                        ok += 2;
-                        mn = min(mn, n - ok);
+                    double diff = (a[j] - a[i]) * 1.0 / (j - i);
+                    int cng = 0;
+                    double curr = a[i];
+                    for(int k = i - 1; k >= 0; k--){
+                        curr -= diff;
+                        if(abs(curr - a[k]) < eps);
+                        else cng++;
                     }
-                    else{
-                        for(int k = i - 1; k >= 0; k--){
-                            if(a[i] - (diff * (i - k)) == a[k]) ok++;
-                        }
-                        for(int k = j + 1; k < n; k++){
-                            if(a[j] + (diff * (k - j)) == a[k]) ok++;
-                        }
-                        ok += 2;
-                        mn = min(mn, n - ok);
+                    curr = a[i];
+                    for(int k = i + 1; k < n; k++){
+                        curr += diff;
+                        if(abs(curr - a[k]) < eps);
+                        else cng++;
                     }
+                    mn = min(mn, cng);
                 }
             }
             cout << mn << '\n';
