@@ -1,0 +1,131 @@
+// Problem link: https://codeforces.com/contest/1857/problem/G
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#include <bits/stdc++.h>
+#include <climits>
+
+using namespace std;
+
+#define ll long long int
+
+#define pii pair<int, int>
+#define pli pair<ll, int>
+#define pil pair<int, ll>
+#define pll pair<ll, ll>
+#define psi pair<string, int>
+#define psl pair<string, ll>
+#define piii pair<pair<int, int>, int>
+#define pipii pair<int, pair<int, int>>
+#define pipll pair<int, pair<ll, ll>>
+#define plpii pair<ll, pair<int, int>>
+#define plpll pair<ll, pair<ll, ll>>
+#define piipii pair<pair<int, int>, pair<int, int>>
+#define vi vector<int>
+#define vll vector<ll>
+#define vb vector<bool>
+#define vvi vector<vector<int>>
+#define vvll vector<vector<ll>>
+#define vvb vector<vector<bool>>
+#define vs vector<string>
+#define vvvi vector<vector<vector<int>>>
+#define vvvll vector<vector<vector<ll>>>
+#define vvs vector<vector<string>>
+#define vpii vector<pair<int, int>>
+#define vpll vector<pair<ll, ll>>
+#define vpli vector<pair<ll, int>>
+#define vpil vector<pair<int, ll>>
+#define vpipii vector<pair<int, pair<int, int>>>
+#define vpipll vector<pair<int, pair<ll, ll>>>
+#define vvpii vector<vector<pair<int, int>>>
+#define vvpll vector<vector<pair<ll, ll>>>
+#define vplpii vector<pair<ll, pair<int, int>>>
+#define vplpll vector<pair<ll, pair<ll, ll>>>
+#define vvpil vector<vector<pair<int, ll>>>
+#define pb push_back
+#define pf push_front
+#define ff first
+#define ss second
+
+//const ll mod = 1e9 + 7;
+const ll mod = 998244353;
+const double pi = acos(-1.0);
+const double PI = 3.1415926535897;
+const double eps = 1e-6;
+
+ll POW_MOD(ll a, ll b){
+    if(b == 0)
+        return 1;
+    if(b == 1)
+        return a;
+    ll x = POW_MOD(a, b/2);
+    if(b&1) return ((((x % mod) * (x % mod)) % mod) * (a % mod)) % mod;
+    else return ((x % mod) * (x % mod)) % mod;
+}
+
+vector<int> sz, parent;
+
+void init(int n){
+    parent.clear(); parent.resize(n + 1);
+    sz.clear(); sz.resize(n + 1, 1);
+    for(int i = 1; i <= n; i++) parent[i] = i;
+}
+
+int find(int v){
+    if(parent[v] == v)
+        return v;
+    return parent[v] = find(parent[v]);
+}
+
+void Union(int u, int v){
+    int pu = find(u);
+    int pv = find(v);
+    if(pu != pv){
+        if(sz[pu] < sz[pv])
+            swap(pu, pv);
+        parent[pv] = pu;
+        sz[pu] += sz[pv];
+    }
+}
+
+
+void zahid(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    freopen("Error.txt", "w", stderr);
+    #endif
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+}
+
+int main(){
+
+    zahid();
+
+    int t; cin >> t;
+    while(t--){
+        int n, s; cin >> n >> s;
+        init(n);
+        vpipii edges;
+        for(int i = 0; i < n - 1; i++){
+            int u, v, w;
+            cin >> u >> v >> w;
+            edges.pb({w, {u, v}});
+        }
+        sort(edges.begin(), edges.end());
+        ll ans = 1;
+        for(int i = 0; i < n - 1; i++){
+            int u = edges[i].ss.ff;
+            int v = edges[i].ss.ss;
+            int w = edges[i].ff;
+
+            int l = sz[find(u)];
+            int r = sz[find(v)];
+
+            Union(u, v);
+
+            ans *= (POW_MOD(s - w + 1, l * r - 1) % mod);
+        }
+        cout << ans << '\n';
+    }
+}
