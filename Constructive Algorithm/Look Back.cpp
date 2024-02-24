@@ -51,29 +51,6 @@ const double pi = acos(-1.0);
 const double PI = 3.1415926535897;
 const double eps = 1e-6;
 
-ll POW(ll a, ll b){
-    if(b == 0)
-        return 1;
-    if(b == 1)
-        return a;
-    ll x = POW(a, b/2);
-    if(b&1) return (x * x * a);
-    else return (x * x);
-}
-
-ll CEIL(ll a, ll b){
-    if(a < 0 && b > 0){
-        return 1; 
-    }
-    return ((a + b - 1) / b);
-}
-
-ll depression(ll x){
-    if(x == 1) return 1;
-    if(x == 2) return 1;
-    return depression(x / 2) + depression((x + 1) / 2); 
-}
-
 void zahid(){
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
