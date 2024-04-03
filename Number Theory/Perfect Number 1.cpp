@@ -52,30 +52,7 @@ const double pi = acos(-1.0);
 const double PI = 3.1415926535897;
 const double eps = 1e-6;
 
-ll POW(ll a, ll b){
-    if(b == 0)
-        return 1;
-    if(b == 1)
-        return a;
-    ll x = POW(a, b/2);
-    if(b&1) return (x * x * a);
-    else return (x * x);
-}
-
-bool isPrime(ll x){
-    for(ll i = 2; i * i <= x; i++){
-        if(x % i == 0)
-            return false;
-    }
-    return true;
-}
-
 void zahid(){
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    freopen("Error.txt", "w", stderr);
-    #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
